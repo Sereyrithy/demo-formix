@@ -1,8 +1,11 @@
 import { useFormik } from "formik";
 import { basicSchema } from "../schemas";
 
-const onSubmit = () => {
-  console.log("submitted");
+const onSubmit = async (values,actions) =>  {
+  console.log(values);
+  console.log(actions);
+  await new Promise((resolve) => setTimeout(resolve, 1000))
+  actions.resetForm();
 } 
 
 const BasicForm = () => {
@@ -11,6 +14,7 @@ const BasicForm = () => {
     handleBlur, 
     handleChange,
     handleSubmit,
+    isSubmitting,
     errors,
     touched
   } = useFormik({
@@ -76,8 +80,8 @@ const BasicForm = () => {
       className={errors.confirmPassword && touched.confirmPassword ? "input-error" : ""}
       />
       {errors.confirmPassword && touched.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
-      <button type="submit">Submit</button>
-      
+      <button disabled={isSubmitting} type="submit">Submit</button>
+
     </form>
   );
 };
