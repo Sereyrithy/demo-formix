@@ -1,5 +1,5 @@
+import { Analytics } from '@vercel/analytics/react';
 import { useState } from "react";
-
 import "./App.css";
 import BasicForm from "./components/BasicForm";
 import AdvancedForm from "./components/AdvanceForm";
@@ -23,6 +23,7 @@ function App() {
         </h3>
       </nav>
       {view === "basic" ? <BasicForm/> : <AdvancedForm/>}
+      <Analytics />
     </div>
   );
 }
